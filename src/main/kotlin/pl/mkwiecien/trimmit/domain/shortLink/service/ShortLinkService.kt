@@ -17,8 +17,8 @@ class ShortLinkService(
 
     }
 
-    fun findByTag() {
-
+    fun findByTag(tag: String): ShortLink? {
+        return shortLinkRepository.findByTag(tag)
     }
 
     private fun generateTag(length: Int = 6): String {
@@ -40,5 +40,11 @@ class ShortLinkService(
 
     data class CreateRequest(
         val originalUrl: String
+    )
+
+    data class UpdateRequest(
+        val tag: String,
+        val originalUrl: String,
+        val visits: Int?
     )
 }
